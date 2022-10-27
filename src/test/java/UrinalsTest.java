@@ -27,4 +27,11 @@ class UrinalsTest {
         System.out.println("==== Sarthak Patel == TEST THREE EXECUTED SUCCESSFULLY ====");
     }
 
+    @Test
+    void isNullStringValid() {
+        String invalidString = null;
+        assertEquals(false, urinals.isStringValid(invalidString));
+        System.out.println("==== Sarthak Patel == TEST FOUR EXECUTED SUCCESSFULLY ====");
+    }
+
 }

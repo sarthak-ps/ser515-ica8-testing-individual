@@ -8,7 +8,7 @@ public class Urinals {
     }
 
     Boolean isStringValid(String s){
-        if (s.isEmpty() || s.isBlank()){
+        if (s == null || s.isEmpty() || s.isBlank()){
             return false;
         }
         for (int i = 1; i < s.length(); i++){
