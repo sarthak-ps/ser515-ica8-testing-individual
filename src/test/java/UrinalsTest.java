@@ -36,6 +36,13 @@ class UrinalsTest {
     }
 
     @Test
+    void stringContainsValidCharsOnly(){
+        String invalidString = "00100x";
+        assertEquals(false, urinals.isStringValid(invalidString));
+        System.out.println("==== Sarthak Patel == TEST ELEVEN EXECUTED SUCCESSFULLY ====");
+    }
+
+    @Test
     void zeroOutOfOneUrinalAvailable() {
         String givenOccupancyState = "1";
         assertEquals(0, urinals.countAvailableUrinals(givenOccupancyState));
