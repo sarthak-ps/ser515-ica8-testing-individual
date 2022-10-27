@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 /**
 Author: Sarthak Patel
 */
@@ -5,6 +10,10 @@ public class Urinals {
 
     public static void main(String[] args) {
 
+    }
+
+    FileReader openFile(String path) throws FileNotFoundException {
+        return new FileReader(path);
     }
 
     Boolean isStringValid(String s){

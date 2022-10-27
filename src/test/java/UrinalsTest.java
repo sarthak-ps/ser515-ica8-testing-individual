@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -82,6 +83,15 @@ class UrinalsTest {
         String givenOccupancyState = "1001010100101";
         assertEquals(0, urinals.countAvailableUrinals(givenOccupancyState));
         System.out.println("==== Sarthak Patel == TEST TEN EXECUTED SUCCESSFULLY ====");
+    }
+
+    @Test
+    void fileDoesNotExist(){
+        String pathToFile = "";
+        assertThrows(FileNotFoundException.class, () -> {
+            urinals.openFile(pathToFile);
+        });
+        System.out.println("==== Sarthak Patel == TEST TWELVE EXECUTED SUCCESSFULLY ====");
     }
 
 }
