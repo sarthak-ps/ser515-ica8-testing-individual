@@ -24,6 +24,9 @@ public class Urinals {
         if (s.length() == 1 && s.charAt(0) == '0') {
             availableUrinals++;
         }
+        if (s.length() == 2 && s.charAt(0) == '0' && s.charAt(1) == '0') {
+            availableUrinals++;
+        }
         return availableUrinals;
     }
 
