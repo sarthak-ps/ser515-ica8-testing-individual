@@ -34,4 +34,11 @@ class UrinalsTest {
         System.out.println("==== Sarthak Patel == TEST FOUR EXECUTED SUCCESSFULLY ====");
     }
 
+    @Test
+    void zeroOutOfOneUrinalAvailable() {
+        String givenOccupancyState = "1";
+        assertEquals(0, urinals.countAvailableUrinals(givenOccupancyState));
+        System.out.println("==== Sarthak Patel == TEST FIVE EXECUTED SUCCESSFULLY ====");
+    }
+
 }

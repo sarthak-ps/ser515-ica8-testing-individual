@@ -19,4 +19,9 @@ public class Urinals {
         return true;
     }
 
+    int countAvailableUrinals(String s) {
+        int availableUrinals = 0;
+        return availableUrinals;
+    }
+
 }
