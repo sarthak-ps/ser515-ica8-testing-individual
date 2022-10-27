@@ -16,6 +16,19 @@ public class Urinals {
         return new FileReader(path);
     }
 
+    String[] readInputStrings(FileReader fileReader) throws IOException {
+        List<String> inputs = new ArrayList<>();
+        String line = "";
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
+        while ((line = bufferedReader.readLine()) != null){
+            if (line.equals("-1")){
+                break;
+            }
+            inputs.add(line);
+        }
+        return inputs.toArray(new String[0]);
+    }
+
     Boolean isStringValid(String s){
         if (s == null || s.isEmpty() || s.isBlank()){
             return false;
