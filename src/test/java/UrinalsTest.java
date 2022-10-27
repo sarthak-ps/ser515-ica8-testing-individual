@@ -63,6 +63,11 @@ class UrinalsTest {
         System.out.println("==== Sarthak Patel == TEST EIGHT EXECUTED SUCCESSFULLY ====");
     }
 
-
+    @Test
+    void longSequenceUrinalAvailable() {
+        String givenOccupancyState = "00010100";
+        assertEquals(2, urinals.countAvailableUrinals(givenOccupancyState));
+        System.out.println("==== Sarthak Patel == TEST NINE EXECUTED SUCCESSFULLY ====");
+    }
 
 }
