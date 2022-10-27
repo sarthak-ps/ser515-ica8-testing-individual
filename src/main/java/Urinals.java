@@ -1,7 +1,9 @@
-import java.io.File;
-import java.io.FileInputStream;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
 Author: Sarthak Patel
@@ -21,7 +23,7 @@ public class Urinals {
         String line = "";
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         while ((line = bufferedReader.readLine()) != null){
-            if (line.equals("-1")){
+            if (line.equals("-1") || line.equals("EOF")){
                 break;
             }
             inputs.add(line);

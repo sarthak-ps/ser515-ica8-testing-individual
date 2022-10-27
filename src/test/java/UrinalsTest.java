@@ -119,4 +119,18 @@ class UrinalsTest {
         System.out.println("==== Sarthak Patel == TEST FOURTEEN EXECUTED SUCCESSFULLY ====");
     }
 
+    @Test
+    void fileEndWithExplicitEOF(){
+        String pathToFile = "src/main/java/TestInput2.txt";
+        FileReader fileReader = null;
+        try { fileReader = urinals.openFile(pathToFile); }
+        catch (FileNotFoundException e) { e.printStackTrace(); }
+        try {
+            assertArrayEquals(new String[] {"1001010", "001010101"}, urinals.readInputStrings(fileReader));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("==== Sarthak Patel == TEST FIFTEEN EXECUTED SUCCESSFULLY ====");
+    }
+
 }
