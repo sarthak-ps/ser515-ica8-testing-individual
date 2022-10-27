@@ -8,6 +8,9 @@ public class Urinals {
     }
 
     Boolean isStringValid(String s){
+        if (s.isEmpty()){
+            return false;
+        }
         for (int i = 1; i < s.length(); i++){
             if (s.charAt(i) == '1' && s.charAt(i-1) == '1'){
                 return false;
