@@ -1,4 +1,6 @@
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -92,6 +94,15 @@ class UrinalsTest {
             urinals.openFile(pathToFile);
         });
         System.out.println("==== Sarthak Patel == TEST TWELVE EXECUTED SUCCESSFULLY ====");
+    }
+
+    @Test
+    void fileOpensSuccessfully(){
+        String pathToFile = "src/main/java/input.txt";
+        assertDoesNotThrow(() -> {
+            urinals.openFile(pathToFile);
+        });
+        System.out.println("==== Sarthak Patel == TEST THIRTEEN EXECUTED SUCCESSFULLY ====");
     }
 
 }
