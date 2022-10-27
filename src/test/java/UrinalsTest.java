@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,6 +40,13 @@ class UrinalsTest {
         String givenOccupancyState = "1";
         assertEquals(0, urinals.countAvailableUrinals(givenOccupancyState));
         System.out.println("==== Sarthak Patel == TEST FIVE EXECUTED SUCCESSFULLY ====");
+    }
+
+    @Test
+    void oneOutOfOneUrinalAvailable() {
+        String givenOccupancyState = "0";
+        assertEquals(1, urinals.countAvailableUrinals(givenOccupancyState));
+        System.out.println("==== Sarthak Patel == TEST SIX EXECUTED SUCCESSFULLY ====");
     }
 
 }

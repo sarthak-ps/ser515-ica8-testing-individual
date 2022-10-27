@@ -21,6 +21,9 @@ public class Urinals {
 
     int countAvailableUrinals(String s) {
         int availableUrinals = 0;
+        if (s.length() == 1 && s.charAt(0) == '0') {
+            availableUrinals++;
+        }
         return availableUrinals;
     }
 
