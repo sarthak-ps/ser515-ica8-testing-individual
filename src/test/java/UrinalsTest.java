@@ -1,6 +1,10 @@
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -144,7 +148,38 @@ class UrinalsTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("==== Sarthak Patel == TEST FIFTEEN EXECUTED SUCCESSFULLY ====");
+        System.out.println("==== Sarthak Patel == TEST SIXTEEN EXECUTED SUCCESSFULLY ====");
+    }
+
+    @Test
+    void createUniqueOutputFile(){
+        List<String> fileNames = Stream.of(new File("src/main/java/").listFiles())
+                .filter(file -> !file.isDirectory())
+                .map(File::getName)
+                .collect(Collectors.toList());
+        int greatestSuffix = 0;
+        boolean ruleAlreadyExists = false;
+        for (String fileName: fileNames) {
+            if (fileName.length() >= 4 && fileName.substring(0, 3).equals("rule")){
+                int index = getSuffixIndex(fileName);
+                greatestSuffix = Math.max(index, greatestSuffix);
+                ruleAlreadyExists = true;
+            }
+        }
+        try {
+            File file = urinals.uniqueFile();
+            int index = getSuffixIndex(file.getName());
+            if (ruleAlreadyExists){
+                assertEquals(index, greatestSuffix + 1);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("==== Sarthak Patel == TEST SEVENTEEN EXECUTED SUCCESSFULLY ====");
+    }
+
+    private int getSuffixIndex(String fileName){
+        return Integer.parseInt(fileName.substring(4, fileName.indexOf('.')));
     }
 
 }

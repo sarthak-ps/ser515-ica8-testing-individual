@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -74,6 +75,23 @@ public class Urinals {
             }
         }
         return availableUrinals;
+    }
+
+    public File uniqueFile() throws IOException {
+        File dir = new File("src/main/java/");
+        File uniqueFile = null;
+        int fileIndexSuffix = 0;
+        boolean fileCreated = false;
+        while (!fileCreated) {
+            if (dir != null) {
+                uniqueFile = new File(dir, "rule" + fileIndexSuffix + ".txt");
+            } else {
+                uniqueFile = new File("rule" + fileIndexSuffix + ".txt");
+            }
+            fileCreated = uniqueFile.createNewFile();
+            fileIndexSuffix++;
+        }
+        return uniqueFile;
     }
 
 }
