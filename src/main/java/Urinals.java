@@ -1,7 +1,9 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,6 @@ Author: Sarthak Patel
 public class Urinals {
 
     public static void main(String[] args) {
-
     }
 
     FileReader openFile(String path) throws FileNotFoundException {
@@ -92,6 +93,15 @@ public class Urinals {
             fileIndexSuffix++;
         }
         return uniqueFile;
+    }
+
+    public void writeOutputToFile(File file, int[] output) throws IOException {
+        BufferedWriter fileWriter = new BufferedWriter(new FileWriter(file));
+        for (int num: output) {
+            fileWriter.write(num + "");
+            fileWriter.newLine();
+        }
+        fileWriter.close();
     }
 
 }

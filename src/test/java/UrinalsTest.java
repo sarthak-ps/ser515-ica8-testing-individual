@@ -1,7 +1,10 @@
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -180,6 +183,28 @@ class UrinalsTest {
 
     private int getSuffixIndex(String fileName){
         return Integer.parseInt(fileName.substring(4, fileName.indexOf('.')));
+    }
+
+    @Test
+    void writeOutputToFile(){
+        List<Integer> output = new ArrayList<Integer>(Arrays.asList(0, 2, -1, 3, 4, 0));
+        File file = new File("src/main/resources/used_for_junit_test.txt");
+        try {
+            int[] outputIntArray = output.stream()
+                                        .mapToInt(Integer::intValue)
+                                        .toArray();
+            urinals.writeOutputToFile(file, outputIntArray);
+            BufferedReader fileReader = new BufferedReader(new FileReader(file));
+            String line = null;
+            List<Integer> list = new ArrayList<>();
+            while ((line = fileReader.readLine()) != null){
+                list.add(Integer.parseInt(line));
+            }
+            assertArrayEquals(outputIntArray, list.stream().mapToInt(Integer::intValue).toArray());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("==== Sarthak Patel == TEST EIGHTEEN EXECUTED SUCCESSFULLY ====");
     }
 
 }
