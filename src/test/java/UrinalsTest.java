@@ -18,6 +18,7 @@ class UrinalsTest {
     Urinals urinals = new Urinals();
 
     @Test
+    @DisplayName("Input String Two Consecutive Urinals Occupied")
     void isStringValid() {
         String invalidString = "010011000";
         assertEquals(false, urinals.isStringValid(invalidString));
@@ -25,6 +26,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("Input String Is Empty")
     void isEmptyStringValid() {
         String invalidString = "";
         assertEquals(false, urinals.isStringValid(invalidString));
@@ -32,6 +34,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("Input String Contains Only Whitespace")
     void isBlankStringValid() {
         String invalidString = "        ";
         assertEquals(false, urinals.isStringValid(invalidString));
@@ -39,6 +42,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("Input String Is Null")
     void isNullStringValid() {
         String invalidString = null;
         assertEquals(false, urinals.isStringValid(invalidString));
@@ -46,6 +50,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("Input String Contains Characters Other Than 0/1")
     void stringContainsValidCharsOnly(){
         String invalidString = "00100x";
         assertEquals(false, urinals.isStringValid(invalidString));
@@ -53,6 +58,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("0/1 Urinal Available")
     void zeroOutOfOneUrinalAvailable() {
         String givenOccupancyState = "1";
         assertEquals(0, urinals.countAvailableUrinals(givenOccupancyState));
@@ -60,6 +66,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("1/1 Urinal Available")
     void oneOutOfOneUrinalAvailable() {
         String givenOccupancyState = "0";
         assertEquals(1, urinals.countAvailableUrinals(givenOccupancyState));
@@ -67,6 +74,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("1/2 Urinal Available")
     void oneOutOfTwoUrinalAvailable() {
         String givenOccupancyState = "00";
         assertEquals(1, urinals.countAvailableUrinals(givenOccupancyState));
@@ -74,6 +82,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("0/2 Urinal Available")
     void zeroOutOfTwoUrinalAvailable() {
         String givenOccupancyState = "01";
         assertEquals(0, urinals.countAvailableUrinals(givenOccupancyState));
@@ -81,6 +90,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("Long Input String Urinal Available")
     void longSequenceUrinalAvailable() {
         String givenOccupancyState = "00010100";
         assertEquals(2, urinals.countAvailableUrinals(givenOccupancyState));
@@ -88,6 +98,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("Long Input String Urinal Unavailable")
     void longSequenceUrinalUnavailable() {
         String givenOccupancyState = "1001010100101";
         assertEquals(0, urinals.countAvailableUrinals(givenOccupancyState));
@@ -95,6 +106,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("File To Read Not Found")
     void fileDoesNotExist(){
         String pathToFile = "";
         assertThrows(FileNotFoundException.class, () -> {
@@ -104,8 +116,9 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("File Opened Successfully")
     void fileOpensSuccessfully(){
-        String pathToFile = "src/main/java/input.txt";
+        String pathToFile = "src/main/resources/urinal.dat";
         assertDoesNotThrow(() -> {
             urinals.openFile(pathToFile);
         });
@@ -113,6 +126,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("File Ends With -1")
     void fileEndNegativeOne(){
         String pathToFile = "src/main/java/TestInput1.txt";
         FileReader fileReader = null;
@@ -127,6 +141,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("File Ends With Explicit EOF Token")
     void fileEndWithExplicitEOF(){
         String pathToFile = "src/main/java/TestInput2.txt";
         FileReader fileReader = null;
@@ -141,6 +156,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("File Ends With Implicit EOF Token")
     void fileEndWithImplicitEOF(){
         String pathToFile = "src/main/java/TestInput3.txt";
         FileReader fileReader = null;
@@ -155,6 +171,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("Create Unique Rule File")
     void createUniqueOutputFile(){
         List<String> fileNames = Stream.of(new File("src/main/java/").listFiles())
                 .filter(file -> !file.isDirectory())
@@ -186,6 +203,7 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("Write Output To File")
     void writeOutputToFile(){
         List<Integer> output = new ArrayList<Integer>(Arrays.asList(0, 2, -1, 3, 4, 0));
         File file = new File("src/main/resources/used_for_junit_test.txt");
