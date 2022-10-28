@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
 Author: Sarthak Patel
@@ -14,13 +15,59 @@ Author: Sarthak Patel
 public class Urinals {
 
     public static void main(String[] args) {
+        System.out.println("1. Provide Input Using Keyboard");
+        System.out.println("2. Take Input From File (src/main/java/resources/urinal.dat)");
+        System.out.println("-------------------------------------------------");
+        System.out.print("Enter Your Choice (1/2): ");
+        Scanner scanner = new Scanner(System.in);
+        String userChoice;
+        userChoice = scanner.next();
+        switch (userChoice) {
+            case "1":
+                System.out.print("\nProvide Input String: ");
+                userChoice = scanner.next();
+                if (isStringValid(userChoice)) {
+                    System.out.println("Available Urinal Spaces: " +
+                            countAvailableUrinals(userChoice.strip()));
+                } else {
+                    System.out.println("Input string is invalid! Please try again.");
+                }
+                break;
+            case "2":
+                try {
+                    FileReader fileReader = new FileReader("src/main/resources/urinal.dat");
+                    String[] inputStrings = readInputStrings(fileReader);
+                    System.out.println("\nSpaces\t|\tInput");
+                    System.out.println("-----------------------");
+                    List<Integer> outputs = new ArrayList<>();
+                    for (String input : inputStrings) {
+                        int spaceAvailable;
+                        if (isStringValid(input)) {
+                            spaceAvailable = countAvailableUrinals(input);
+                            System.out.println(spaceAvailable + "\t\t|\t" + input);
+                        } else {
+                            spaceAvailable = -1;
+                            System.out.println(spaceAvailable + "\t\t|\t" + input);
+                        }
+                        outputs.add(spaceAvailable);
+                    }
+                    int[] outputIntArray = outputs.stream().mapToInt(Integer::intValue).toArray();
+                    File file = uniqueFile();
+                    writeOutputToFile(file, outputIntArray);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                break;
+        }
     }
 
-    FileReader openFile(String path) throws FileNotFoundException {
+    static FileReader openFile(String path) throws FileNotFoundException {
         return new FileReader(path);
     }
 
-    String[] readInputStrings(FileReader fileReader) throws IOException {
+    static String[] readInputStrings(FileReader fileReader) throws IOException {
         List<String> inputs = new ArrayList<>();
         String line = "";
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -33,7 +80,7 @@ public class Urinals {
         return inputs.toArray(new String[0]);
     }
 
-    Boolean isStringValid(String s){
+    static Boolean isStringValid(String s){
         if (s == null || s.isEmpty() || s.isBlank()){
             return false;
         }
@@ -48,7 +95,7 @@ public class Urinals {
         return true;
     }
 
-    int countAvailableUrinals(String s) {
+    static int countAvailableUrinals(String s) {
         int availableUrinals = 0;
         char[] urinals = s.toCharArray();
         if (s.length() == 1 && s.charAt(0) == '0') {
@@ -70,7 +117,7 @@ public class Urinals {
                     availableUrinals++;
                 }
             }
-            else if (urinals[i-1] == '0' && urinals[i] == '0' && urinals[i+1] == 0){
+            else if (urinals[i-1] == '0' && urinals[i] == '0' && urinals[i+1] == '0'){
                 urinals[i] = '1';
                 availableUrinals++;
             }
@@ -78,7 +125,7 @@ public class Urinals {
         return availableUrinals;
     }
 
-    public File uniqueFile() throws IOException {
+    static public File uniqueFile() throws IOException {
         File dir = new File("src/main/java/");
         File uniqueFile = null;
         int fileIndexSuffix = 0;
@@ -95,7 +142,7 @@ public class Urinals {
         return uniqueFile;
     }
 
-    public void writeOutputToFile(File file, int[] output) throws IOException {
+    static public void writeOutputToFile(File file, int[] output) throws IOException {
         BufferedWriter fileWriter = new BufferedWriter(new FileWriter(file));
         for (int num: output) {
             fileWriter.write(num + "");
