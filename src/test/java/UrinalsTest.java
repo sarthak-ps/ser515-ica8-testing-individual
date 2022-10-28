@@ -124,6 +124,18 @@ class UrinalsTest {
     }
 
     @Test
+    @DisplayName("File Opened is Empty")
+    void openedEmptyFile(){
+        String pathToFile = "src/main/resources/empty_file.dat";
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            Urinals.openFile(pathToFile);
+        });
+
+        assertTrue(exception.getMessage().equals("File is empty"));
+    }
+
+    @Test
     @DisplayName("File Ends With -1")
     void fileEndNegativeOne(){
         String pathToFile = "src/main/java/TestInput1.txt";

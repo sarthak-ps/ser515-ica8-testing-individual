@@ -63,7 +63,15 @@ public class Urinals {
         }
     }
 
-    static FileReader openFile(String path) throws FileNotFoundException {
+    static FileReader openFile(String path) throws FileNotFoundException, RuntimeException {
+        FileReader fileReader = new FileReader(path);
+        try {
+            if (fileReader.read() == -1){
+                throw new RuntimeException("File is empty");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return new FileReader(path);
     }
 
