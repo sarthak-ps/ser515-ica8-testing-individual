@@ -15,13 +15,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UrinalsTest {
 
-    Urinals urinals = new Urinals();
-
     @Test
     @DisplayName("Input String Two Consecutive Urinals Occupied")
     void isStringValid() {
         String invalidString = "010011000";
-        assertEquals(false, urinals.isStringValid(invalidString));
+        assertEquals(false, Urinals.isStringValid(invalidString));
         System.out.println("==== Sarthak Patel == TEST ONE EXECUTED SUCCESSFULLY ====");
     }
 
@@ -29,7 +27,7 @@ class UrinalsTest {
     @DisplayName("Input String Is Empty")
     void isEmptyStringValid() {
         String invalidString = "";
-        assertEquals(false, urinals.isStringValid(invalidString));
+        assertEquals(false, Urinals.isStringValid(invalidString));
         System.out.println("==== Sarthak Patel == TEST TWO EXECUTED SUCCESSFULLY ====");
     }
 
@@ -37,7 +35,7 @@ class UrinalsTest {
     @DisplayName("Input String Contains Only Whitespace")
     void isBlankStringValid() {
         String invalidString = "        ";
-        assertEquals(false, urinals.isStringValid(invalidString));
+        assertEquals(false, Urinals.isStringValid(invalidString));
         System.out.println("==== Sarthak Patel == TEST THREE EXECUTED SUCCESSFULLY ====");
     }
 
@@ -45,7 +43,7 @@ class UrinalsTest {
     @DisplayName("Input String Is Null")
     void isNullStringValid() {
         String invalidString = null;
-        assertEquals(false, urinals.isStringValid(invalidString));
+        assertEquals(false, Urinals.isStringValid(invalidString));
         System.out.println("==== Sarthak Patel == TEST FOUR EXECUTED SUCCESSFULLY ====");
     }
 
@@ -53,7 +51,7 @@ class UrinalsTest {
     @DisplayName("Input String Contains Characters Other Than 0/1")
     void stringContainsValidCharsOnly(){
         String invalidString = "00100x";
-        assertEquals(false, urinals.isStringValid(invalidString));
+        assertEquals(false, Urinals.isStringValid(invalidString));
         System.out.println("==== Sarthak Patel == TEST ELEVEN EXECUTED SUCCESSFULLY ====");
     }
 
@@ -61,7 +59,7 @@ class UrinalsTest {
     @DisplayName("0/1 Urinal Available")
     void zeroOutOfOneUrinalAvailable() {
         String givenOccupancyState = "1";
-        assertEquals(0, urinals.countAvailableUrinals(givenOccupancyState));
+        assertEquals(0, Urinals.countAvailableUrinals(givenOccupancyState));
         System.out.println("==== Sarthak Patel == TEST FIVE EXECUTED SUCCESSFULLY ====");
     }
 
@@ -69,7 +67,7 @@ class UrinalsTest {
     @DisplayName("1/1 Urinal Available")
     void oneOutOfOneUrinalAvailable() {
         String givenOccupancyState = "0";
-        assertEquals(1, urinals.countAvailableUrinals(givenOccupancyState));
+        assertEquals(1, Urinals.countAvailableUrinals(givenOccupancyState));
         System.out.println("==== Sarthak Patel == TEST SIX EXECUTED SUCCESSFULLY ====");
     }
 
@@ -77,7 +75,7 @@ class UrinalsTest {
     @DisplayName("1/2 Urinal Available")
     void oneOutOfTwoUrinalAvailable() {
         String givenOccupancyState = "00";
-        assertEquals(1, urinals.countAvailableUrinals(givenOccupancyState));
+        assertEquals(1, Urinals.countAvailableUrinals(givenOccupancyState));
         System.out.println("==== Sarthak Patel == TEST SEVEN EXECUTED SUCCESSFULLY ====");
     }
 
@@ -85,7 +83,7 @@ class UrinalsTest {
     @DisplayName("0/2 Urinal Available")
     void zeroOutOfTwoUrinalAvailable() {
         String givenOccupancyState = "01";
-        assertEquals(0, urinals.countAvailableUrinals(givenOccupancyState));
+        assertEquals(0, Urinals.countAvailableUrinals(givenOccupancyState));
         System.out.println("==== Sarthak Patel == TEST EIGHT EXECUTED SUCCESSFULLY ====");
     }
 
@@ -93,7 +91,7 @@ class UrinalsTest {
     @DisplayName("Long Input String Urinal Available")
     void longSequenceUrinalAvailable() {
         String givenOccupancyState = "00010100";
-        assertEquals(2, urinals.countAvailableUrinals(givenOccupancyState));
+        assertEquals(2, Urinals.countAvailableUrinals(givenOccupancyState));
         System.out.println("==== Sarthak Patel == TEST NINE EXECUTED SUCCESSFULLY ====");
     }
 
@@ -101,7 +99,7 @@ class UrinalsTest {
     @DisplayName("Long Input String Urinal Unavailable")
     void longSequenceUrinalUnavailable() {
         String givenOccupancyState = "1001010100101";
-        assertEquals(0, urinals.countAvailableUrinals(givenOccupancyState));
+        assertEquals(0, Urinals.countAvailableUrinals(givenOccupancyState));
         System.out.println("==== Sarthak Patel == TEST TEN EXECUTED SUCCESSFULLY ====");
     }
 
@@ -110,7 +108,7 @@ class UrinalsTest {
     void fileDoesNotExist(){
         String pathToFile = "";
         assertThrows(FileNotFoundException.class, () -> {
-            urinals.openFile(pathToFile);
+            Urinals.openFile(pathToFile);
         });
         System.out.println("==== Sarthak Patel == TEST TWELVE EXECUTED SUCCESSFULLY ====");
     }
@@ -120,7 +118,7 @@ class UrinalsTest {
     void fileOpensSuccessfully(){
         String pathToFile = "src/main/resources/urinal.dat";
         assertDoesNotThrow(() -> {
-            urinals.openFile(pathToFile);
+            Urinals.openFile(pathToFile);
         });
         System.out.println("==== Sarthak Patel == TEST THIRTEEN EXECUTED SUCCESSFULLY ====");
     }
@@ -130,10 +128,10 @@ class UrinalsTest {
     void fileEndNegativeOne(){
         String pathToFile = "src/main/java/TestInput1.txt";
         FileReader fileReader = null;
-        try { fileReader = urinals.openFile(pathToFile); }
+        try { fileReader = Urinals.openFile(pathToFile); }
         catch (FileNotFoundException e) { e.printStackTrace(); }
         try {
-            assertArrayEquals(new String[] {"1001010", "001010101"}, urinals.readInputStrings(fileReader));
+            assertArrayEquals(new String[] {"1001010", "001010101"}, Urinals.readInputStrings(fileReader));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -145,10 +143,10 @@ class UrinalsTest {
     void fileEndWithExplicitEOF(){
         String pathToFile = "src/main/java/TestInput2.txt";
         FileReader fileReader = null;
-        try { fileReader = urinals.openFile(pathToFile); }
+        try { fileReader = Urinals.openFile(pathToFile); }
         catch (FileNotFoundException e) { e.printStackTrace(); }
         try {
-            assertArrayEquals(new String[] {"1001010", "001010101"}, urinals.readInputStrings(fileReader));
+            assertArrayEquals(new String[] {"1001010", "001010101"}, Urinals.readInputStrings(fileReader));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -160,10 +158,10 @@ class UrinalsTest {
     void fileEndWithImplicitEOF(){
         String pathToFile = "src/main/java/TestInput3.txt";
         FileReader fileReader = null;
-        try { fileReader = urinals.openFile(pathToFile); }
+        try { fileReader = Urinals.openFile(pathToFile); }
         catch (FileNotFoundException e) { e.printStackTrace(); }
         try {
-            assertArrayEquals(new String[] {"1001010", "001010101"}, urinals.readInputStrings(fileReader));
+            assertArrayEquals(new String[] {"1001010", "001010101"}, Urinals.readInputStrings(fileReader));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -187,7 +185,7 @@ class UrinalsTest {
             }
         }
         try {
-            File file = urinals.uniqueFile();
+            File file = Urinals.uniqueFile();
             int index = getSuffixIndex(file.getName());
             if (ruleAlreadyExists){
                 assertEquals(index, greatestSuffix + 1);
@@ -211,7 +209,7 @@ class UrinalsTest {
             int[] outputIntArray = output.stream()
                                         .mapToInt(Integer::intValue)
                                         .toArray();
-            urinals.writeOutputToFile(file, outputIntArray);
+            Urinals.writeOutputToFile(file, outputIntArray);
             BufferedReader fileReader = new BufferedReader(new FileReader(file));
             String line = null;
             List<Integer> list = new ArrayList<>();
